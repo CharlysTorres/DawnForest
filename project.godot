@@ -1,0 +1,114 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "ParallaxBackground",
+"class": "Background",
+"language": "GDScript",
+"path": "res://scripts/env/background.gd"
+}, {
+"base": "Area2D",
+"class": "DetectionArea",
+"language": "GDScript",
+"path": "res://scripts/enemy/detection_area.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "EnemyTemplate",
+"language": "GDScript",
+"path": "res://scripts/enemy/enemy_template.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://scripts/management/level.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scripts/Player/player.gd"
+}, {
+"base": "Sprite",
+"class": "PlayerAnimation",
+"language": "GDScript",
+"path": "res://scripts/Player/player_animation.gd"
+}, {
+"base": "Node",
+"class": "PlayerStats",
+"language": "GDScript",
+"path": "res://scripts/Player/player_status.gd"
+} ]
+_global_script_class_icons={
+"Background": "",
+"DetectionArea": "",
+"EnemyTemplate": "",
+"Level": "",
+"Player": "",
+"PlayerAnimation": "",
+"PlayerStats": ""
+}
+
+[application]
+
+config/name="DawnForest"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=320
+window/size/height=180
+window/size/test_width=1280
+window/size/test_height=720
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[input]
+
+game_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+game_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+game_jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+game_attack={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+game_crouch={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":3,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+game_defense={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
