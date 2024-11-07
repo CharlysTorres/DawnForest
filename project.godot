@@ -103,6 +103,16 @@ _global_script_classes=[ {
 "class": "SkeletonAnimation",
 "language": "GDScript",
 "path": "res://scripts/enemy/skeleton/skeleton_animation.gd"
+}, {
+"base": "EnemyTemplate",
+"class": "Sprout",
+"language": "GDScript",
+"path": "res://scripts/enemy/sprout/sprout.gd"
+}, {
+"base": "EnemyAnimation",
+"class": "SproutAnimation",
+"language": "GDScript",
+"path": "res://scripts/enemy/sprout/sprout_animation.gd"
 } ]
 _global_script_class_icons={
 "Background": "",
@@ -123,7 +133,9 @@ _global_script_class_icons={
 "PlayerAnimation": "",
 "PlayerStats": "",
 "ProjectileWorm": "",
-"SkeletonAnimation": ""
+"SkeletonAnimation": "",
+"Sprout": "",
+"SproutAnimation": ""
 }
 
 [application]

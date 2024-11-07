@@ -109,7 +109,6 @@ func update_mana(type: String, value: int) -> void:
 
 
 func on_collision_area_entered(area):
-	print(area)
 	if area.name == "EnemyAttackArea":
 		update_health("Decrease", area.damage)
 		collision_area.set_deferred("monitoring", false)
