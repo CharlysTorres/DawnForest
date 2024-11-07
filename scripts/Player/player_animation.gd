@@ -8,6 +8,7 @@ export(NodePath) onready var animation = get_node(animation) as AnimationPlayer
 export(NodePath) onready var player = get_node(player) as KinematicBody2D
 
 var normal_attack: bool = false
+var magic_attack: bool = false
 var suffix: String = "_right"
 var shield_off: bool = false
 var crouching_off: bool = false
@@ -31,15 +32,21 @@ func verify_position(direction: Vector2) -> void:
 	if direction.x > 0:
 		flip_h = false
 		suffix = "_right"
+		player.flipped = false
 		player.direction = -1
 		position = Vector2.ZERO
+		player.spell_offset = Vector2(100, -50)
 		player.wall_ray.cast_to = Vector2(7.5, 0)
+		player.wall_ray.position = Vector2(0, 0)
 	elif direction.x < 0:
 		flip_h = true
 		suffix = "_left"
+		player.flipped = true
 		player.direction = 1
 		position = Vector2(-2, 0)
-		player.wall_ray.cast_to = Vector2(-10, 0)
+		player.spell_offset = Vector2(-100, -50)
+		player.wall_ray.cast_to = Vector2(-8, 0)
+		player.wall_ray.position = Vector2(-2, 0)
 
 func hit_behavior() -> void:
 	player.set_physics_process(false)
@@ -52,7 +59,7 @@ func hit_behavior() -> void:
 func horizontal_behavior(direction: Vector2) -> void:
 	if direction.x != 0:
 		# play animation run
-		animation.play("run")
+		animation.play("run" + suffix)
 	else:
 		# play animation idle
 		animation.play("idle")
@@ -69,6 +76,8 @@ func action_behavior() -> void:
 		animation.play("wall_slide")
 	elif player.attacking and normal_attack:
 		animation.play("attack" + suffix)
+	elif player.attacking and magic_attack:
+		animation.play("spell_attack")
 	elif player.defending and shield_off:
 		animation.play("shield")
 		shield_off = false
@@ -98,3 +107,6 @@ func on_animation_finished(anim_name: String):
 				animation.play("crouch")
 		"dead":
 			emit_signal("game_over")
+		"spell_attack":
+			magic_attack = false
+			player.attacking = false

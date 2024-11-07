@@ -14,20 +14,70 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/env/background.gd"
 }, {
+"base": "Control",
+"class": "BarContainer",
+"language": "GDScript",
+"path": "res://scripts/interface/player/bar_container.gd"
+}, {
+"base": "Area2D",
+"class": "CollisionAreaEnemyTemplate",
+"language": "GDScript",
+"path": "res://scripts/enemy/collision_area.gd"
+}, {
 "base": "Area2D",
 "class": "DetectionArea",
 "language": "GDScript",
 "path": "res://scripts/enemy/detection_area.gd"
+}, {
+"base": "AnimatedSprite",
+"class": "EffectTemplate",
+"language": "GDScript",
+"path": "res://scripts/effects/template/effect_template.gd"
+}, {
+"base": "Sprite",
+"class": "EnemyAnimation",
+"language": "GDScript",
+"path": "res://scripts/enemy/enemy_animation.gd"
+}, {
+"base": "Area2D",
+"class": "EnemyAttackArea",
+"language": "GDScript",
+"path": "res://scripts/enemy/enemy_attack_area.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "EnemyTemplate",
 "language": "GDScript",
 "path": "res://scripts/enemy/enemy_template.gd"
 }, {
+"base": "Area2D",
+"class": "FireSpell",
+"language": "GDScript",
+"path": "res://scripts/Player/spell_area.gd"
+}, {
+"base": "EnemyTemplate",
+"class": "FireWorm",
+"language": "GDScript",
+"path": "res://scripts/enemy/fire_worm/fire_worm.gd"
+}, {
+"base": "EnemyAnimation",
+"class": "FireWormAnimate",
+"language": "GDScript",
+"path": "res://scripts/enemy/fire_worm/animate_fire_worm.gd"
+}, {
+"base": "Label",
+"class": "FloatingText",
+"language": "GDScript",
+"path": "res://scripts/env/floating_text.gd"
+}, {
 "base": "Node2D",
 "class": "Level",
 "language": "GDScript",
 "path": "res://scripts/management/level.gd"
+}, {
+"base": "RigidBody2D",
+"class": "PhysicItem",
+"language": "GDScript",
+"path": "res://scripts/env/physic_item.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -43,15 +93,31 @@ _global_script_classes=[ {
 "class": "PlayerStats",
 "language": "GDScript",
 "path": "res://scripts/Player/player_status.gd"
+}, {
+"base": "EnemyAnimation",
+"class": "SkeletonAnimation",
+"language": "GDScript",
+"path": "res://scripts/enemy/skeleton/skeleton_animation.gd"
 } ]
 _global_script_class_icons={
 "Background": "",
+"BarContainer": "",
+"CollisionAreaEnemyTemplate": "",
 "DetectionArea": "",
+"EffectTemplate": "",
+"EnemyAnimation": "",
+"EnemyAttackArea": "",
 "EnemyTemplate": "",
+"FireSpell": "",
+"FireWorm": "",
+"FireWormAnimate": "",
+"FloatingText": "",
 "Level": "",
+"PhysicItem": "",
 "Player": "",
 "PlayerAnimation": "",
-"PlayerStats": ""
+"PlayerStats": "",
+"SkeletonAnimation": ""
 }
 
 [application]
@@ -68,30 +134,59 @@ window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
 [input]
 
 game_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 game_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 game_jump={
 "deadzone": 0.5,
 "events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 game_attack={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+player1_attack2={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 game_crouch={
@@ -104,6 +199,39 @@ game_defense={
 "events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+player_interect={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+player2_right={
+"deadzone": 0.5,
+"events": [  ]
+}
+player2_left={
+"deadzone": 0.5,
+"events": [  ]
+}
+player2_jump={
+"deadzone": 0.5,
+"events": [  ]
+}
+player2_attack={
+"deadzone": 0.5,
+"events": [  ]
+}
+player2_interect={
+"deadzone": 0.5,
+"events": [  ]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Tile"
+2d_physics/layer_2="SlideTile"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Enemy"
 
 [physics]
 
