@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/enemy/fire_worm/worm/Idle.png" type="Texture" id=1]
 [ext_resource path="res://assets/enemy/fire_worm/worm/Walk.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scripts/enemy/detection_area.gd" type="Script" id=8]
 [ext_resource path="res://scripts/enemy/collision_area.gd" type="Script" id=9]
 [ext_resource path="res://scripts/enemy/enemy_attack_area.gd" type="Script" id=10]
+[ext_resource path="res://scenes/env/floating_text.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.8405, 13.1083 )
@@ -348,6 +349,7 @@ script = ExtResource( 6 )
 speed = 30
 gravity_speed = 350
 proximity_threshold = 90
+floating_text = ExtResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
