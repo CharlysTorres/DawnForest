@@ -109,10 +109,18 @@ func update_mana(type: String, value: int) -> void:
 
 
 func on_collision_area_entered(area):
+	print(area)
 	if area.name == "EnemyAttackArea":
 		update_health("Decrease", area.damage)
 		collision_area.set_deferred("monitoring", false)
 		invicibility_timer.start(area.invencibility_timer)
+	elif area.is_in_group("fireball_worm"):
+		update_health("Decrease", area.damage)
+		collision_area.set_deferred("monitoring", false)
+		invicibility_timer.start(area.invencibility_timer)
+		
+		area.speed = 0
+		area.animation.play("explosion")
 
 
 func on_invencibility_timer_timeout() -> void:

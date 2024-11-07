@@ -1,6 +1,10 @@
 extends EnemyTemplate
 class_name FireWorm
 
+const FIREBALL: PackedScene = preload("res://scenes/projectiles/fire_ball_worm.tscn")
+
+onready var position_projectile: Position2D = get_node("PositionProjectile")
+
 func _ready() -> void:
 	randomize()
 	drop_list = {
@@ -50,3 +54,14 @@ func _ready() -> void:
 			600
 		]
 	}
+
+func spawn_fireball() -> void:
+	var new_fireball: ProjectileWorm = FIREBALL.instance()
+	get_tree().root.call_deferred("add_child", new_fireball)
+	new_fireball.global_position = position_projectile.global_position
+	
+	if sign(position_projectile.position.x) == 1:
+		new_fireball.set_direction(1)
+	else:
+		new_fireball.set_direction(-1)
+

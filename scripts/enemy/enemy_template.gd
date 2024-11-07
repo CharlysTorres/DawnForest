@@ -22,6 +22,7 @@ export(int) var proximity_threshold
 export(bool) var texture_looking_left
 export(int) var raycast_default_position
 export(PackedScene) var floating_text
+export(int) var number_attack
 
 func _physics_process(delta: float) -> void:
 	gravity(delta)

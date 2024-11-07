@@ -66,6 +66,32 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, false, true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Animation:playback_speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_fireball"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "dead"
@@ -170,7 +196,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.5, 1.0 ]
+"values": [ 0.3, 1.0 ]
 }
 tracks/4/type = "method"
 tracks/4/path = NodePath(".")
@@ -365,7 +391,6 @@ shape = SubResource( 1 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-playback_speed = 0.5
 anims/attack = SubResource( 5 )
 anims/dead = SubResource( 6 )
 anims/hit = SubResource( 7 )
