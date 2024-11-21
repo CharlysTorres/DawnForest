@@ -14,7 +14,7 @@ script = ExtResource( 2 )
 polygon = PoolVector2Array( 1.761, 3.545, -1.761, 3.538, -4.10001, -0.00281, -1.761, -3.549, 1.761, -3.541, 4.1, -0.003 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="InterectionArea" type="Area2D" parent="."]
 collision_layer = 0

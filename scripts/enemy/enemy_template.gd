@@ -12,6 +12,7 @@ var can_attack: bool = false
 var velocity: Vector2
 var drop_list: Dictionary
 var player_ref: Player = null
+var enemy_spawned: bool = false
 
 var drop_bonus: int = 1
 
@@ -23,10 +24,12 @@ export(bool) var texture_looking_left
 export(int) var raycast_default_position
 export(PackedScene) var floating_text
 export(int) var number_attack
+export(bool) var has_spawn
 
 func _physics_process(delta: float) -> void:
 	gravity(delta)
 	move_behavior()
+	spawn_enemy()
 	verify_position()
 	sprite.animate(velocity)
 	velocity = move_and_slide(velocity, Vector2.UP)
@@ -52,17 +55,31 @@ func gravity(delta: float) -> void:
 
 func move_behavior() -> void:
 	if player_ref != null:
-		var distance: Vector2 = player_ref.global_position - global_position
-		var direction: Vector2 = distance.normalized()
-		if abs(distance.x) <= proximity_threshold:
+		if has_spawn:
+			if enemy_spawned:
+				var distance: Vector2 = player_ref.global_position - global_position
+				var direction: Vector2 = distance.normalized()
+				if abs(distance.x) <= proximity_threshold:
+					velocity.x = 0
+					can_attack = true
+				elif floor_collision() and not can_attack:
+					velocity.x = direction.x * speed
+				else:
+					velocity.x = 0
+				return
 			velocity.x = 0
-			can_attack = true
-		elif floor_collision() and not can_attack:
-			velocity.x = direction.x * speed
 		else:
-			velocity.x = 0
-		return
-	velocity.x = 0
+			var distance: Vector2 = player_ref.global_position - global_position
+			var direction: Vector2 = distance.normalized()
+			if abs(distance.x) <= proximity_threshold:
+				velocity.x = 0
+				can_attack = true
+			elif floor_collision() and not can_attack:
+				velocity.x = direction.x * speed
+			else:
+				velocity.x = 0
+			return
+		velocity.x = 0
 
 func floor_collision() -> bool:
 	if floor_ray.is_colliding():
@@ -106,3 +123,7 @@ func spawn_floating_text(type_sign: String, type: String, value: int) -> void:
 	text.type_sign = type_sign
 	
 	get_tree().root.call_deferred("add_child", text)
+
+func spawn_enemy() -> void:
+	if player_ref != null and has_spawn and enemy_spawned != true:
+		animation.play("spawn")

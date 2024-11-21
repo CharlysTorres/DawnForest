@@ -55,13 +55,18 @@ environment = SubResource( 1 )
 
 [node name="Sprout" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 1174.09, 159.168 )
+speed = 25
+proximity_threshold = 15
+hasSpawn = null
 
 [node name="FireWorm" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 546.546, 107.983 )
 enemy_exp = 35
+hasSpawn = null
 
 [node name="FireWorm2" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 1574.64, 176.019 )
 enemy_exp = 35
+hasSpawn = null
 
 [node name="Hud" parent="." instance=ExtResource( 10 )]
