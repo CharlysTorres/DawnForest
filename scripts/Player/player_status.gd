@@ -4,7 +4,7 @@ class_name PlayerStats
 export(PackedScene) var floating_text
 export(NodePath) onready var player = get_node(player) as KinematicBody2D
 export(NodePath) onready var collision_area = get_node(collision_area) as Area2D
-onready var invicibility_timer: Timer = get_node("InvencibilityTimer")
+onready var invencibility_timer: Timer = get_node("InvencibilityTimer")
 
 var shielding: bool = false
 
@@ -112,11 +112,15 @@ func on_collision_area_entered(area):
 	if area.name == "EnemyAttackArea":
 		update_health("Decrease", area.damage)
 		collision_area.set_deferred("monitoring", false)
-		invicibility_timer.start(area.invencibility_timer)
+		invencibility_timer.start(area.invencibility_timer)
 	elif area.is_in_group("fireball_worm"):
 		update_health("Decrease", area.damage)
 		collision_area.set_deferred("monitoring", false)
-		invicibility_timer.start(area.invencibility_timer)
+		invencibility_timer.start(area.invencibility_timer)
+	elif area.is_in_group("projectile"):
+		update_health("Decrease", area.damage)
+		invencibility_timer.start(area.invencibility_timer)
+		
 		
 		area.speed = 0
 		area.animation.play("explosion")

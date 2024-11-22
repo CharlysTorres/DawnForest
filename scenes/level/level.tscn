@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/tileset_village.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/enemy/skeleton/skeleton_seeker.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/tile/adventure pack/Assets.png" type="Texture" id=9]
 [ext_resource path="res://resources/castle_ruins.tres" type="TileSet" id=10]
+[ext_resource path="res://scenes/traps/arrow_trap/arrow_trap.tscn" type="PackedScene" id=11]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Assets.png 0"
@@ -35,6 +36,11 @@
 0/z_index = 0
 
 [node name="Level" type="Node2D"]
+
+[node name="Traps" type="Node2D" parent="."]
+
+[node name="ArrowTrap" parent="Traps" instance=ExtResource( 11 )]
+position = Vector2( 2307, 224 )
 
 [node name="Tilemaps" type="Node2D" parent="."]
 
@@ -95,9 +101,6 @@ format = 1
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2078, 308 )
-
-[node name="TileMap" type="TileMap" parent="."]
-format = 1
 
 [node name="Enemies" type="Node2D" parent="."]
 

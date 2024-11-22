@@ -19,7 +19,12 @@ func set_direction(dir) -> void:
 	else:
 		$Sprite.flip_h = false
 
-func on_animation_finished(anim_name):
+func on_animation_finished(anim_name) -> void:
 	match anim_name:
 		"explosion":
 			queue_free()
+
+
+func on_area_entered(area) -> void:
+	if area != null:
+		queue_free()
