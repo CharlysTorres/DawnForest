@@ -104,6 +104,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/management/level.gd"
 }, {
+"base": "Area2D",
+"class": "ObjectTemplate",
+"language": "GDScript",
+"path": "res://scripts/objects/object_template.gd"
+}, {
 "base": "RigidBody2D",
 "class": "PhysicItem",
 "language": "GDScript",
@@ -189,6 +194,7 @@ _global_script_class_icons={
 "InterfaceItem": "",
 "InventoryContainer": "",
 "Level": "",
+"ObjectTemplate": "",
 "PhysicItem": "",
 "Player": "",
 "PlayerAnimation": "",
@@ -333,6 +339,8 @@ click={
 2d_physics/layer_2="SlideTile"
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Enemy"
+2d_physics/layer_5="Objects"
+2d_physics/layer_6="Traps"
 
 [physics]
 
